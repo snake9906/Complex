@@ -12,6 +12,7 @@ int main() {
 //    std::cout << Complex(3, 2).__conjugate__() << std::endl;
 //    std::cout << arg(Complex(1, 0)) << std::endl;
 
+    std::cout << (x == y) << std::endl;
     std::cout << Complex(3, 2) << std::endl;
     std::vector<Complex> roots = Complex(3, 2).get_roots(4);
 

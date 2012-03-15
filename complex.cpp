@@ -148,6 +148,14 @@ Complex Complex::operator/(const Complex number) const {
     return this->__div__(number);
 }
 
+double abs(const Complex number) {
+    return number.__abs__();
+}
+
+double arg(const Complex number) {
+    return number.__arg__();
+}
+
 std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {
     if (complexNumber.get_real()) {
         cout_ << complexNumber.get_real();
@@ -164,12 +172,4 @@ std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {
     }
 
     return cout_;
-}
-
-double abs(const Complex number) {
-    return number.__abs__();
-}
-
-double arg(const Complex number) {
-    return number.__arg__();
 }

@@ -1,4 +1,4 @@
-/*
+/**
     Библиотека для работы с комплексными числами
 
     Должны быть определены операторы:
@@ -11,11 +11,11 @@
         * сравнения, check
         * вычисления модуля комплексного числа, check
         * нахождение сопряженного комплексного числа, check
-        * функции извлечения степени.
+        * функции извлечения степени. check
 */
 
-// #ifndef COMPLEX_H
-// #define COMPLEX_H
+#ifndef COMPLEX_H
+#define COMPLEX_H
 
 #include <iostream>
 #include <string>
@@ -61,11 +61,11 @@ public:
      Complex operator*(const Complex number) const;
      Complex operator/(const Complex number) const;
 
-     friend std::ostream& operator<<(std::ostream& cout_,
-                                     const Complex& complexNumber);
-
      friend double abs(const Complex number);
      friend double arg(const Complex number);
+
+     friend std::ostream& operator<<(std::ostream& cout_,
+                                     const Complex& complexNumber);
 };
 
-// #endif
+#endif
