@@ -38,6 +38,8 @@ public:
     Complex(double real, double imag);
     Complex(const Complex& number);
 
+    double temp() const;
+
     /* Setters */
     void set_real(double real);
     void set_imag(double imag);
@@ -48,8 +50,14 @@ public:
 
     std::vector<Complex> get_roots(const unsigned int n);
 
-     /* Arithmetics */
+    /* Arithmetics */
+    /* Boolean operations */
     bool __eq__(const Complex& number) const;
+
+    bool __gt__(const Complex& number) const;
+    bool __ge__(const Complex& number) const;
+    bool __lt__(const Complex& number) const;
+    bool __le__(const Complex& number) const;
 
     Complex __neg__() const;
     Complex __conjugate__() const;
@@ -71,7 +79,13 @@ public:
     /* Operators */
     Complex operator=(const Complex& number);
 
+    /* Boolean */
     bool operator==(const Complex& number) const;
+
+    bool operator>(const Complex& number) const;
+    bool operator<(const Complex& number) const;
+    bool operator>=(const Complex& number) const;
+    bool operator<=(const Complex& number) const;
 
     Complex operator-() const;
 

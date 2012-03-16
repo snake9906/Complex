@@ -2,7 +2,9 @@
   Copyright [year] <Copyright Owner>
   */
 
-#include "complex.h"
+#include "include/complex.h"
+
+#include <vector>
 
 
 Complex::Complex() {
@@ -40,6 +42,10 @@ double Complex::get_imag() const {
     return this->imag;
 }
 
+double Complex::temp() const {
+    return pow(this->real, 2) + pow(this->imag, 2);
+}
+
 std::vector<Complex> Complex::get_roots(const unsigned int n) {
     return this->__roots__(n);
 }
@@ -59,7 +65,7 @@ Complex Complex::__conjugate__() const {
 }
 
 double Complex::__abs__() const {
-    return sqrt(pow(this->real, 2) + pow(this->imag, 2));
+    return sqrt(this->temp());
 }
 
 double Complex::__arg__() const {
@@ -134,7 +140,7 @@ void Complex::__rdiv__(const Complex& number) {
 
 std::vector<Complex> Complex::__roots__(const unsigned int n) {
     std::vector<Complex> roots;
-    double r = pow(this->__abs__(), (double)1/n);
+    double r = pow(this->__abs__(), static_cast<double>(1)/n); /* LOLTWF? */
 
     for (unsigned int k = 0; k < n; ++k) {
         double x = (this->__arg__() + 2 * M_PI * k) / n;
@@ -219,4 +225,38 @@ std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {
     }
 
     return cout_;
+}
+
+/* Comparison by absolute value */
+
+bool Complex::__gt__(const Complex& number) const {
+    return this->temp() > number.temp();
+}
+
+bool Complex::__ge__(const Complex& number) const {
+     return this->temp() >= number.temp();
+}
+
+bool Complex::__lt__(const Complex& number) const {
+    return this->temp() < number.temp();
+}
+
+bool Complex::__le__(const Complex& number) const {
+    return this->temp() <= number.temp();
+}
+
+bool Complex::operator>(const Complex& number) const {
+    return this->__gt__(number);
+}
+
+bool Complex::operator<(const Complex& number) const {
+    return this->__lt__(number);
+}
+
+bool Complex::operator>=(const Complex& number) const {
+    return this->__ge__(number);
+}
+
+bool Complex::operator<=(const Complex& number) const {
+    return this->__le__(number);
 }
