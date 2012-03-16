@@ -38,8 +38,6 @@ public:
     Complex(double real, double imag);
     Complex(const Complex& number);
 
-    double temp() const;
-
     /* Setters */
     void set_real(double real);
     void set_imag(double imag);

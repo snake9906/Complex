@@ -42,10 +42,6 @@ double Complex::get_imag() const {
     return this->imag;
 }
 
-double Complex::temp() const {
-    return pow(this->real, 2) + pow(this->imag, 2);
-}
-
 std::vector<Complex> Complex::get_roots(const unsigned int n) {
     return this->__roots__(n);
 }
@@ -65,7 +61,7 @@ Complex Complex::__conjugate__() const {
 }
 
 double Complex::__abs__() const {
-    return sqrt(this->temp());
+    return sqrt(pow(this->real, 2) + pow(this->imag, 2));
 }
 
 double Complex::__arg__() const {
@@ -237,19 +233,19 @@ std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {
 /* Comparison by absolute value */
 
 bool Complex::__gt__(const Complex& number) const {
-    return this->temp() > number.temp();
+    return this->__abs__() > number.__abs__();
 }
 
 bool Complex::__ge__(const Complex& number) const {
-     return this->temp() >= number.temp();
+     return this->__abs__() >= number.__abs__();
 }
 
 bool Complex::__lt__(const Complex& number) const {
-    return this->temp() < number.temp();
+    return this->__abs__() < number.__abs__();
 }
 
 bool Complex::__le__(const Complex& number) const {
-    return this->temp() <= number.temp();
+    return this->__abs__() <= number.__abs__();
 }
 
 bool Complex::operator>(const Complex& number) const {
