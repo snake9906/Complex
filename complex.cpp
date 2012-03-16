@@ -136,11 +136,15 @@ void Complex::__rsub__(const Complex& number) {
 }
 
 void Complex::__rmul__(const Complex& number) {
-    //
+    Complex newComplexNumber = this->__mul__(number);
+    this->real = newComplexNumber.real;
+    this->imag = newComplexNumber.imag;
 }
 
 void Complex::__rdiv__(const Complex& number) {
-    //
+    Complex newComplexNumber = this->__div__(number);
+    this->real = newComplexNumber.real;
+    this->imag = newComplexNumber.imag;
 }
 
 /* Operators overloading */
