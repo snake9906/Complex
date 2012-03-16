@@ -140,14 +140,14 @@ void Complex::__rdiv__(const Complex& number) {
 
 std::vector<Complex> Complex::__roots__(const unsigned int n) {
     std::vector<Complex> roots;
-    double r = pow(this->__abs__(), static_cast<double>(1)/n); /* LOLTWF? */
+    double rn = pow(this->__abs__(), static_cast<double>(1)/n); /* LOLTWF? */
 
     for (unsigned int k = 0; k < n; ++k) {
         double x = (this->__arg__() + 2 * M_PI * k) / n;
         double cosx = cos(x);
         double sinx = sin(x);
 
-        roots.push_back(Complex(r * cosx, r * sinx));
+        roots.push_back(Complex(rn * cosx, rn * sinx));
     }
 
     return roots;
@@ -207,6 +207,13 @@ double abs(const Complex& number) {
 
 double arg(const Complex& number) {
     return number.__arg__();
+}
+
+Complex Complex::__pow__(int n) {
+    double rn = pow(this->__abs__(), n);
+    double x = n * this->__arg__();
+
+    return Complex(rn * cos(x), rn * sin(x));
 }
 
 std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {

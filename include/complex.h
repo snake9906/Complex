@@ -74,6 +74,7 @@ public:
     void __rmul__(const Complex& number);
     void __rdiv__(const Complex& number);
 
+    Complex __pow__(int n);
     std::vector<Complex> __roots__(const unsigned int n);
 
     /* Operators */
