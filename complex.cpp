@@ -46,41 +46,20 @@ std::vector<Complex> Complex::get_roots(const unsigned int n) {
 
 /* Complex arithmetics */
 
-Complex Complex::__add__(const Complex& number) const {
-    return Complex(this->real + number.real, this->imag + number.imag);
+bool Complex::__eq__(const Complex& number) const {
+    return this->real == number.real && this->imag == number.imag;
 }
 
 Complex Complex::__neg__() const {
     return Complex(-this->real, -this->imag);
 }
 
-Complex Complex::__sub__(const Complex& number) const {
-    return this->__add__(number.__neg__());
+Complex Complex::__conjugate__() const {
+    return Complex(this->real, -this->imag);
 }
 
-bool Complex::__eq__(const Complex& number) const {
-    return this->real == number.real && this->imag == number.imag;
-}
-
-Complex Complex::__mul__(const Complex& number) const {
-    return Complex(this->real * number.real - this->imag * number.imag,
-                   this->imag * number.real + this->real * number.imag);
-}
-
-Complex Complex::__div__(const Complex& number) const {
-    if (number.__eq__(Complex(0, 0))) {
-        throw DivideByZeroException();
-    }
-
-    double real, imag;
-    real = this->real * number.real + this->imag * number.imag;
-    imag = this->imag * number.real - this->real * number.imag;
-
-    double t = pow(number.real, 2) + pow(number.imag, 2);
-    real /= t;
-    imag /= t;
-
-    return Complex(real, imag);
+double Complex::__abs__() const {
+    return sqrt(pow(this->real, 2) + pow(this->imag, 2));
 }
 
 double Complex::__arg__() const {
@@ -102,27 +81,33 @@ double Complex::__arg__() const {
     return phi;
 }
 
-std::vector<Complex> Complex::__roots__(const unsigned int n) {
-    std::vector<Complex> roots;
-    double r = pow(this->__abs__(), (double)1/n);
+Complex Complex::__add__(const Complex& number) const {
+    return Complex(this->real + number.real, this->imag + number.imag);
+}
 
-    for (unsigned int k = 0; k < n; ++k) {
-        double x = (this->__arg__() + 2 * M_PI * k) / n;
-        double cosx = cos(x);
-        double sinx = sin(x);
+Complex Complex::__sub__(const Complex& number) const {
+    return this->__add__(number.__neg__());
+}
 
-        roots.push_back(Complex(r * cosx, r * sinx));
+Complex Complex::__mul__(const Complex& number) const {
+    return Complex(this->real * number.real - this->imag * number.imag,
+                   this->imag * number.real + this->real * number.imag);
+}
+
+Complex Complex::__div__(const Complex& number) const {
+    if (number.__eq__(Complex(0, 0))) {
+        throw DivideByZeroException();
     }
 
-    return roots;
-}
+    double real, imag;
+    real = this->real * number.real + this->imag * number.imag;
+    imag = this->imag * number.real - this->real * number.imag;
 
-Complex Complex::__conjugate__() const {
-    return Complex(this->real, -this->imag);
-}
+    double t = pow(number.real, 2) + pow(number.imag, 2);
+    real /= t;
+    imag /= t;
 
-double Complex::__abs__() const {
-    return sqrt(pow(this->real, 2) + pow(this->imag, 2));
+    return Complex(real, imag);
 }
 
 void Complex::__radd__(const Complex& number) {
@@ -147,7 +132,30 @@ void Complex::__rdiv__(const Complex& number) {
     this->imag = newComplexNumber.imag;
 }
 
+std::vector<Complex> Complex::__roots__(const unsigned int n) {
+    std::vector<Complex> roots;
+    double r = pow(this->__abs__(), (double)1/n);
+
+    for (unsigned int k = 0; k < n; ++k) {
+        double x = (this->__arg__() + 2 * M_PI * k) / n;
+        double cosx = cos(x);
+        double sinx = sin(x);
+
+        roots.push_back(Complex(r * cosx, r * sinx));
+    }
+
+    return roots;
+}
+
 /* Operators overloading */
+
+Complex Complex::operator=(const Complex& number) {
+    return Complex(number);
+}
+
+bool Complex::operator==(const Complex& number) const {
+    return this->__eq__(number);
+}
 
 Complex Complex::operator+(const Complex& number) const {
     return this->__add__(number);
@@ -161,24 +169,12 @@ Complex Complex::operator-(const Complex& number) const {
     return this->__sub__(number);
 }
 
-bool Complex::operator==(const Complex& number) const {
-    return this->__eq__(number);
-}
-
 Complex Complex::operator*(const Complex& number) const {
     return this->__mul__(number);
 }
 
 Complex Complex::operator/(const Complex& number) const {
     return this->__div__(number);
-}
-
-double abs(const Complex& number) {
-    return number.__abs__();
-}
-
-double arg(const Complex& number) {
-    return number.__arg__();
 }
 
 void Complex::operator+=(const Complex& number) {
@@ -197,8 +193,14 @@ void Complex::operator/=(const Complex& number) {
     this->__rdiv__(number);
 }
 
-Complex Complex::operator=(const Complex& number) {
-    return Complex(number);
+/* Friend functions */
+
+double abs(const Complex& number) {
+    return number.__abs__();
+}
+
+double arg(const Complex& number) {
+    return number.__arg__();
 }
 
 std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {

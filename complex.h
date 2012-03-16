@@ -50,38 +50,42 @@ public:
 
      /* Arithmetics */
     bool __eq__(const Complex& number) const;
-    Complex __add__(const Complex& number) const;
+
     Complex __neg__() const;
-    Complex __sub__(const Complex& number) const;
-    Complex __mul__(const Complex& number) const;
-    Complex __div__(const Complex& number) const;
     Complex __conjugate__() const;
     double __abs__() const;
     double __arg__() const;
-    std::vector<Complex> __roots__(const unsigned int n);
+
+    Complex __add__(const Complex& number) const;
+    Complex __sub__(const Complex& number) const;
+    Complex __mul__(const Complex& number) const;
+    Complex __div__(const Complex& number) const;
 
     void __radd__(const Complex& number);
     void __rsub__(const Complex& number);
     void __rmul__(const Complex& number);
     void __rdiv__(const Complex& number);
 
+    std::vector<Complex> __roots__(const unsigned int n);
+
     /* Operators */
+    Complex operator=(const Complex& number);
+
     bool operator==(const Complex& number) const;
-    Complex operator+(const Complex& number) const;
+
     Complex operator-() const;
+    friend double abs(const Complex& number);
+    friend double arg(const Complex& number);
+
+    Complex operator+(const Complex& number) const;
     Complex operator-(const Complex& number) const;
     Complex operator*(const Complex& number) const;
     Complex operator/(const Complex& number) const;
-
-    friend double abs(const Complex& number);
-    friend double arg(const Complex& number);
 
     void operator+=(const Complex& number);
     void operator-=(const Complex& number);
     void operator*=(const Complex& number);
     void operator/=(const Complex& number);
-
-    Complex operator=(const Complex& number);
 
     friend std::ostream& operator<<(std::ostream& cout_,
                                     const Complex& complexNumber);
