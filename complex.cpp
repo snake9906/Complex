@@ -39,7 +39,7 @@ std::vector<Complex> Complex::get_roots(const unsigned int n) {
 
 /* Complex arithmetics */
 
-Complex Complex::__add__(const Complex number) const {
+Complex Complex::__add__(const Complex& number) const {
     return Complex(this->real + number.real, this->imag + number.imag);
 }
 
@@ -47,20 +47,20 @@ Complex Complex::__neg__() const {
     return Complex(-this->real, -this->imag);
 }
 
-Complex Complex::__sub__(const Complex number) const {
+Complex Complex::__sub__(const Complex& number) const {
     return this->__add__(number.__neg__());
 }
 
-bool Complex::__eq__(const Complex number) const {
+bool Complex::__eq__(const Complex& number) const {
     return this->real == number.real && this->imag == number.imag;
 }
 
-Complex Complex::__mul__(const Complex number) const {
+Complex Complex::__mul__(const Complex& number) const {
     return Complex(this->real * number.real - this->imag * number.imag,
                    this->imag * number.real + this->real * number.imag);
 }
 
-Complex Complex::__div__(const Complex number) const {
+Complex Complex::__div__(const Complex& number) const {
     if (number.__eq__(Complex(0, 0))) {
         throw DivideByZeroException();
     }
@@ -124,7 +124,7 @@ double Complex::__abs__() const {
 
 /* Operators overloading */
 
-Complex Complex::operator+(const Complex number) const {
+Complex Complex::operator+(const Complex& number) const {
     return this->__add__(number);
 }
 
@@ -132,27 +132,27 @@ Complex Complex::operator-() const {
     return this->__neg__();
 }
 
-Complex Complex::operator-(const Complex number) const {
+Complex Complex::operator-(const Complex& number) const {
     return this->__sub__(number);
 }
 
-bool Complex::operator==(const Complex number) const {
+bool Complex::operator==(const Complex& number) const {
     return this->__eq__(number);
 }
 
-Complex Complex::operator*(const Complex number) const {
+Complex Complex::operator*(const Complex& number) const {
     return this->__mul__(number);
 }
 
-Complex Complex::operator/(const Complex number) const {
+Complex Complex::operator/(const Complex& number) const {
     return this->__div__(number);
 }
 
-double abs(const Complex number) {
+double abs(const Complex& number) {
     return number.__abs__();
 }
 
-double arg(const Complex number) {
+double arg(const Complex& number) {
     return number.__arg__();
 }
 
