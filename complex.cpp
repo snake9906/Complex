@@ -125,6 +125,24 @@ double Complex::__abs__() const {
     return sqrt(pow(this->real, 2) + pow(this->imag, 2));
 }
 
+void Complex::__radd__(const Complex& number) {
+    this->real += number.real;
+    this->imag += number.imag;
+}
+
+void Complex::__rsub__(const Complex& number) {
+    this->real += number.__neg__().real;
+    this->imag += number.__neg__().imag;
+}
+
+void Complex::__rmul__(const Complex& number) {
+    //
+}
+
+void Complex::__rdiv__(const Complex& number) {
+    //
+}
+
 /* Operators overloading */
 
 Complex Complex::operator+(const Complex& number) const {
@@ -157,6 +175,26 @@ double abs(const Complex& number) {
 
 double arg(const Complex& number) {
     return number.__arg__();
+}
+
+void Complex::operator+=(const Complex& number) {
+    this->__radd__(number);
+}
+
+void Complex::operator-=(const Complex& number) {
+    this->__rsub__(number);
+}
+
+void Complex::operator*=(const Complex& number) {
+    this->__rmul__(number);
+}
+
+void Complex::operator/=(const Complex& number) {
+    this->__rdiv__(number);
+}
+
+Complex Complex::operator=(const Complex& number) {
+    return Complex(number);
 }
 
 std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {
