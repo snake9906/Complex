@@ -74,8 +74,6 @@ public:
     bool operator==(const Complex& number) const;
 
     Complex operator-() const;
-    friend double abs(const Complex& number);
-    friend double arg(const Complex& number);
 
     Complex operator+(const Complex& number) const;
     Complex operator-(const Complex& number) const;
@@ -86,6 +84,10 @@ public:
     void operator-=(const Complex& number);
     void operator*=(const Complex& number);
     void operator/=(const Complex& number);
+
+    /* Friend functions */
+    friend double abs(const Complex& number);
+    friend double arg(const Complex& number);
 
     friend std::ostream& operator<<(std::ostream& cout_,
                                     const Complex& complexNumber);
