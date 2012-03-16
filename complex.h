@@ -32,13 +32,20 @@ private:
     double imag;
 
 public:
+    /* Constructors */
     Complex();
     Complex(double real);
     Complex(double real, double imag);
     Complex(const Complex& number);
 
+    /* Setters */
+    void set_real(double real);
+    void set_imag(double imag);
+
+    /* Getters */
     double get_real() const;
     double get_imag() const;
+
     std::vector<Complex> get_roots(const unsigned int n);
 
      /* Arithmetics */

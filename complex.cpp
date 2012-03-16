@@ -25,6 +25,13 @@ Complex::Complex(const Complex& number) {
     this->imag = number.imag;
 }
 
+void Complex::set_real(double real) {
+    this->real = real;
+}
+void Complex::set_imag(double imag) {
+    this->imag = imag;
+}
+
 double Complex::get_real() const {
     return this->real;
 }
