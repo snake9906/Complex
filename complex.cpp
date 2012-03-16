@@ -87,11 +87,7 @@ double Complex::__arg__() const {
     double phi = atan(this->imag / this->real);
 
     if (this->real < 0) {
-        if (this->imag >= 0) {
-            phi += M_PI;
-        } else {
-            phi -= M_PI;
-        }
+        this->imag >= 0 ? phi += M_PI : phi -= M_PI;
     } else if (this->real == 0) {
         if (this->imag == 0) {
             throw IndeterminateValueException();
