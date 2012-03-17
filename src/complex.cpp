@@ -151,8 +151,11 @@ std::vector<Complex> Complex::__roots__(const unsigned int n) {
 
 /* Operators overloading */
 
-Complex Complex::operator=(const Complex& number) {
-    return Complex(number);
+Complex& Complex::operator=(const Complex& number) {
+    this->real = number.real;
+    this->imag = number.imag;
+
+    return *this;
 }
 
 bool Complex::operator==(const Complex& number) const {

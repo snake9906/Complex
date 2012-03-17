@@ -76,7 +76,7 @@ public:
     std::vector<Complex> __roots__(const unsigned int n);
 
     /* Operators */
-    Complex operator=(const Complex& number);
+    Complex& operator=(const Complex& number);
 
     /* Boolean */
     bool operator==(const Complex& number) const;

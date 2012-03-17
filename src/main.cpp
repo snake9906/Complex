@@ -20,15 +20,40 @@
 
 #include "include/complex.h"
 
+void addition();
+void subtraction();
+void multiplication();
+void division();
+
 void conjugate();
 void find_roots();
 
 
 int main() {
+    addition();
     conjugate();
     find_roots();
 }
 
+
+void addition() {
+    Complex a, b;
+
+    // overloaded operator=
+    a = Complex(10, 10);
+    b = Complex(2, 3);
+
+    std::cout << a << " + " << b << " = " << a + b << std::endl;
+}
+
+void subtraction() {
+}
+
+void multiplication() {
+}
+
+void division() {
+}
 
 void conjugate() {
     Complex x(4, 5);
