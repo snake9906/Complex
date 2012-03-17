@@ -27,6 +27,13 @@ Complex::Complex(const Complex& number) {
     this->imag = number.imag;
 }
 
+Complex& Complex::__copy__(const Complex& number) {
+    this->real = number.real;
+    this->imag = number.imag;
+
+    return *this;
+}
+
 void Complex::set_real(double real) {
     this->real = real;
 }
@@ -151,11 +158,8 @@ std::vector<Complex> Complex::__roots__(const unsigned int n) {
 
 /* Operators overloading */
 
-Complex& Complex::operator=(const Complex& number) {
-    this->real = number.real;
-    this->imag = number.imag;
-
-    return *this;
+Complex Complex::operator=(const Complex& number) {
+    return this->__copy__(number);
 }
 
 bool Complex::operator==(const Complex& number) const {

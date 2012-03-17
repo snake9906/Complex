@@ -38,6 +38,8 @@ public:
     Complex(double real, double imag);
     Complex(const Complex& number);
 
+    Complex& __copy__(const Complex& number);
+
     /* Setters */
     void set_real(double real);
     void set_imag(double imag);
@@ -76,7 +78,7 @@ public:
     std::vector<Complex> __roots__(const unsigned int n);
 
     /* Operators */
-    Complex& operator=(const Complex& number);
+    Complex operator=(const Complex& number);
 
     /* Boolean */
     bool operator==(const Complex& number) const;
