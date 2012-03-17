@@ -2,27 +2,14 @@
   Copyright [year] <Copyright Owner>
   */
 
-/**
-    Должны быть определены операторы:
-        * сложения, check
-        * вычитания, check
-        * умножения, check
-        * деления, check
-        * вывода в поток, check
-        * копирования, check
-        * сравнения,
-        * вычисления модуля комплексного числа,
-        * нахождение сопряженного комплексного числа, check
-        * функции извлечения степени. check
-*/
-
 #include <vector>
 
 #include "include/complex.h"
 
 void arithmetics();
-
 void copy();
+void absolute_value();
+void comparison();
 void conjugate();
 void find_roots();
 
@@ -30,7 +17,8 @@ void find_roots();
 int main() {
     arithmetics();
     copy();
-
+    comparison();
+    absolute_value();
     conjugate();
     find_roots();
 }
@@ -61,8 +49,22 @@ void copy() {
 
     std::cout << "a = " << a << std::endl;
     std::cout << "b = " << b << std::endl;
-    std::cout << a << " == " << b << " is "
-              << std::boolalpha << (a == b) << std::endl;
+}
+
+void comparison() {
+    Complex a(3, 4), b(2, 3);
+    Complex c(a);
+
+    std::boolalpha(std::cout);
+    std::cout << a << " == " << b << " is " << (a == b) << std::endl;
+    std::cout << a << " == " << c << " is " << (a == c) << std::endl;
+}
+
+void absolute_value() {
+    Complex x = Complex(3, 14);
+
+    // http://www.wolframalpha.com/input/?i=abs%283%2B14i%29
+    std::cout << abs(x) << std::endl;
 }
 
 void conjugate() {
