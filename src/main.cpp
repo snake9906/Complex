@@ -15,7 +15,7 @@ int main() {
     }
 
     Complex x(1, 1);
-    Complex y(2, 2);
+    Complex y(0, 0);
     Complex z = x / y;
     std::cout << z.__pow__(10) << std::endl;
 
