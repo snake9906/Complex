@@ -7,19 +7,19 @@
 #include "include/complex.h"
 
 
-int main() {
-    std::vector<Complex> roots = Complex(1, 1).get_roots(4);
+void find_roots() {
+    Complex x(3, 2);
+    std::vector<Complex> roots = x.get_roots(4);
 
+    std::cout << "z^4 = " << x << std::endl;
     for (unsigned int i = 0; i < roots.size(); ++i) {
-        std::cout << roots[i] << std::endl;
+        std::cout << "z_" << i + 1 << " = " << roots[i] << std::endl;
     }
 
-    Complex x(1, 1);
-    Complex y(0, 0);
-    Complex z = x / y;
-    std::cout << z.__pow__(10) << std::endl;
+    // http://www.wolframalpha.com/input/?i=z^4=3+2i
+}
 
-    std::cout << x << std::endl;
-    x /= y;
-    std::cout << x << std::endl;
+
+int main() {
+    find_roots();
 }
