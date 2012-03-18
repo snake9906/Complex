@@ -143,7 +143,8 @@ void Complex::__rdiv__(const Complex& number) {
 
 std::vector<Complex> Complex::__roots__(const unsigned int n) {
     std::vector<Complex> roots;
-    double rn = pow(this->__abs__(), static_cast<double>(1)/n);
+    // double rn = pow(this->__abs__(), static_cast<double>(1)/n);
+    double rn = pow(this->__abs__(), 1.0/n);
 
     for (unsigned int k = 0; k < n; ++k) {
         double x = (this->__arg__() + 2 * M_PI * k) / n;
