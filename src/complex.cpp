@@ -141,6 +141,13 @@ void Complex::__rdiv__(const Complex& number) {
     this->imag = newComplexNumber.imag;
 }
 
+Complex Complex::__pow__(int n) {
+    double rn = pow(this->__abs__(), n);
+    double x = n * this->__arg__();
+
+    return Complex(rn * cos(x), rn * sin(x));
+}
+
 std::vector<Complex> Complex::__roots__(const unsigned int n) {
     std::vector<Complex> roots;
     // double rn = pow(this->__abs__(), static_cast<double>(1)/n);
@@ -210,25 +217,22 @@ double arg(const Complex& number) {
     return number.__arg__();
 }
 
-Complex Complex::__pow__(int n) {
-    double rn = pow(this->__abs__(), n);
-    double x = n * this->__arg__();
-
-    return Complex(rn * cos(x), rn * sin(x));
+Complex pow(Complex number, unsigned int n) {
+    return number.__pow__(n);
 }
 
 std::ostream& operator<<(std::ostream& cout_, const Complex& complexNumber) {
-    if (complexNumber.get_real()) {
-        cout_ << complexNumber.get_real();
+    if (complexNumber.real) {
+        cout_ << complexNumber.real;
     }
 
-    if (complexNumber.get_imag()) {
-        if (complexNumber.get_imag() > 0 && complexNumber.get_real() != 0) {
+    if (complexNumber.imag) {
+        if (complexNumber.imag > 0 && complexNumber.real != 0) {
             cout_ << "+";
         }
 
-        cout_ << complexNumber.get_imag() << "i";
-    } else if (!complexNumber.get_real()) {
+        cout_ << complexNumber.imag << "i";
+    } else if (!complexNumber.real) {
         cout_ << "0";
     }
 
