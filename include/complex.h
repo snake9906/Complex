@@ -59,8 +59,8 @@ public:
     bool __lt__(const Complex& number) const;
     bool __le__(const Complex& number) const;
 
-    Complex __neg__() const;
     Complex __conjugate__() const;
+    Complex __neg__() const;
     double __abs__() const;
     double __arg__() const;
 

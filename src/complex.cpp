@@ -125,8 +125,8 @@ void Complex::__radd__(const Complex& number) {
 }
 
 void Complex::__rsub__(const Complex& number) {
-    this->real += number.__neg__().real;
-    this->imag += number.__neg__().imag;
+    this->real -= number.real;
+    this->imag -= number.imag;
 }
 
 void Complex::__rmul__(const Complex& number) {
@@ -147,10 +147,7 @@ std::vector<Complex> Complex::__roots__(const unsigned int n) {
 
     for (unsigned int k = 0; k < n; ++k) {
         double x = (this->__arg__() + 2 * M_PI * k) / n;
-        double cosx = cos(x);
-        double sinx = sin(x);
-
-        roots.push_back(Complex(rn * cosx, rn * sinx));
+        roots.push_back(Complex(rn * cos(x), rn * sin(x)));
     }
 
     return roots;
