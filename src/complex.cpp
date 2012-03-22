@@ -150,7 +150,7 @@ Complex Complex::__pow__(int n) {
 
 std::vector<Complex> Complex::__roots__(const unsigned int n) {
     std::vector<Complex> roots;
-    // double rn = pow(this->__abs__(), static_cast<double>(1)/n);
+
     double rn = pow(this->__abs__(), 1.0/n);
 
     for (unsigned int k = 0; k < n; ++k) {

@@ -179,6 +179,6 @@ public:
 
     friend std::ostream& operator<<(std::ostream& cout_,
                                     const Complex& complexNumber);
-};
+}; // Complex
 
 #endif
